@@ -10,3 +10,5 @@ export default {
   plugins: [],
 }
 
+
+// npx tailwindcss -i ./src/styles/index.dev.css -o ./styles/index.css --watch
