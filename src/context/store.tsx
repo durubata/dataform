@@ -1,8 +1,7 @@
 import create from 'zustand';
-import { diff } from 'deep-object-diff';
 import * as objectPath from 'object-path';
 import { produce } from 'immer';
-import { validationUtil } from 'utils/validate';
+import { validationUtil } from '../utils/validate';
 
 export interface DataformStoreProps {
   setStateItem: (item: { [key: string]: any }) => void;
@@ -104,5 +103,6 @@ export const useDataformStore = create<DataformStoreProps>((set, get) => ({
     if (!validationResult) {
       // Apply error styles or show an error message
     }
+    return null;
   },
 }));

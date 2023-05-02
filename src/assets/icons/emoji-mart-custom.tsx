@@ -25,10 +25,10 @@ import * as iconTi from 'react-icons/ti';
 import * as iconVsc from 'react-icons/vsc';
 import * as iconWi from 'react-icons/wi';
 import * as iconCg from 'react-icons/cg';
+import React from 'react';
 
 import { renderToStaticMarkup } from 'react-dom/server';
 
-console.log(iconFa.FaAppStore);
 export const emojiMartCustom = [
   {
     id: 'fontAwesome',

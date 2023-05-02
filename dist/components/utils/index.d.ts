@@ -1,0 +1,16 @@
+export declare const toTitleCase: (str: string) => string;
+export declare const toSentenceCase: (str: string) => string;
+export declare const deepCopy: (source: any) => any;
+export declare const isEmpty: (obj: any) => boolean;
+export declare const isNotEmpty: (obj: any) => boolean;
+export declare const validUrl: (url: string) => boolean;
+export declare function getRandomString(length?: number): string;
+export declare function removeEmpty(obj: any): any;
+export declare function executeFunctionByName(functionName: string, context: any): any;
+export declare const getElementByClassName: (className: string) => HTMLElement;
+export declare const randomNumber: (length: number) => string;
+export declare const isArrayString: (str: any) => boolean;
+export declare const isObjectString: (str: any) => boolean;
+export declare const isJsonString: (str: any) => boolean;
+export declare const niceURI: (crappyURI: any) => any;
+export declare function findNestedKey(obj: any, key: string | number): any;

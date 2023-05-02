@@ -1,3 +1,4 @@
+import React from 'react';
 import * as iconFa from 'react-icons/fa';
 import * as iconAi from 'react-icons/ai';
 import * as iconBs from 'react-icons/bs';
