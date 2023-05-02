@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { WelcomePage } from './pages/welcome-page';
 import { DemoPage } from './pages/demo-page';
+import { PhonePage } from './pages/phone-page';
 
 export function App() {
   const { i18n } = useTranslation();
@@ -20,6 +21,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="demo" element={<DemoPage />} />
+        <Route path="phone" element={<PhonePage />} />
       </Routes>
     </BrowserRouter>
   );
