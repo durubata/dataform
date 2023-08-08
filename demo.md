@@ -4,7 +4,7 @@ pageTitle: CacheAdvance - Never miss the cache again.
 description: Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.
 ---
 
-Simplify your app or API's user journey with our streamlined platform for crafting clear, comprehensive documentation. Enhance user satisfaction, boost engagement, and grow your community by offering expert resources, all for free. Register now and start creating your tailored guides today! {% .lead %}
+Simplify your app or API's user journey with our streamlined platform for crafting clear, comprehensive documentation. Enhance user satisfaction, boost engagement, and grow your community by offering expert resources, all for free. Register now and start creating your tailored guides today! 
 
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste.
 
