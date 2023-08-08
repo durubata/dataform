@@ -6,18 +6,6 @@ description: Cache every single thing your app could ever do ahead of time, so y
 
 Simplify your app or API's user journey with our streamlined platform for crafting clear, comprehensive documentation. Enhance user satisfaction, boost engagement, and grow your community by offering expert resources, all for free. Register now and start creating your tailored guides today! {% .lead %}
 
-{% quick-links %}
-
-{% quick-link title="Get Stared with Git Repo" icon="installation" href="/" description="Connect to your GitHub repo and we'll manage the rest" /%}
-
-{% quick-link title="Use Appmint's " icon="presets" href="/" description="Manage your documentation from appmint's console simple and intuitive." /%}
-
-{% quick-link title="Plugins" icon="plugins" href="/" description="Extend the library with third-party plugins or write your own." /%}
-
-{% quick-link title="API reference" icon="theming" href="/" description="Learn to easily customize and modify your app's visual design to fit your brand." /%}
-
-{% /quick-links %}
-
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste.
 
 ---
