@@ -1,4 +1,3 @@
-// src/socialIcons.js
 import amazon from './social/rsq-icon-original-amazon.svg';
 import android from './social/rsq-icon-original-android.svg';
 import appStoreB from './social/rsq-icon-original-app-store-b.svg';
@@ -66,9 +65,10 @@ import xing from './social/rsq-icon-original-xing.svg';
 import yahoo from './social/rsq-icon-original-yahoo.svg';
 import youtubeB from './social/rsq-icon-original-youtube-b.svg';
 import youtube from './social/rsq-icon-original-youtube.svg';
+import tiktok from './social/rsq-icon-original-tiktok.svg';
+import telegram from './social/rsq-icon-original-telegram.svg';
+import onlyfans from './social/rsq-icon-original-onlyfans.svg';
 
-// src/socialIcons.js
-// ... (imports)
 
 export const socialIcons = [
   { id: 1, src: amazon, title: 'Amazon' },
@@ -138,4 +138,35 @@ export const socialIcons = [
   { id: 65, src: yahoo, title: 'Yahoo' },
   { id: 66, src: youtubeB, title: 'YouTube B' },
   { id: 67, src: youtube, title: 'YouTube' },
+  { id: 68, src: tiktok, title: 'TikTok' },
+  { id: 69, src: telegram, title: 'Telegram' },
+  { id: 70, src: onlyfans, title: 'Onlyfans' },
+];
+
+
+export const popularSocialIcons = [
+  { id: 19, src: facebook, title: 'Facebook' },
+  { id: 21, src: flickr, title: 'Flickr' },
+  { id: 27, src: google, title: 'Google' },
+  { id: 31, src: instagram, title: 'Instagram' },
+  { id: 33, src: itunes, title: 'iTunes' },
+  { id: 35, src: linkedin, title: 'LinkedIn' },
+  { id: 37, src: mail, title: 'Mail' },
+  { id: 41, src: pinterest, title: 'Pinterest' },
+  { id: 44, src: reddit, title: 'Reddit' },
+  { id: 45, src: rss, title: 'RSS' },
+  { id: 49, src: skype, title: 'Skype' },
+  { id: 50, src: snapchat, title: 'Snapchat' },
+  { id: 51, src: soundcloud, title: 'SoundCloud' },
+  { id: 52, src: spotify, title: 'Spotify' },
+  { id: 54, src: steam, title: 'Steam' },
+  { id: 57, src: twitch, title: 'Twitch' },
+  { id: 58, src: twitter, title: 'Twitter' },
+  { id: 60, src: vimeo, title: 'Vimeo' },
+  { id: 61, src: vine, title: 'Vine' },
+  { id: 65, src: yahoo, title: 'Yahoo' },
+  { id: 67, src: youtube, title: 'YouTube' },
+  { id: 68, src: tiktok, title: 'TikTok' },
+  { id: 69, src: telegram, title: 'Telegram' },
+  { id: 70, src: onlyfans, title: 'Onlyfans' },
 ];

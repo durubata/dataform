@@ -1,4 +1,22 @@
-export const validate = (formData: any, schema: any) => {
+import Ajv, { JSONSchemaType } from "ajv"
+import addFormats from "ajv-formats"
+
+const ajv = new Ajv({
+  allErrors: true,
+  useDefaults: true,
+});
+addFormats(ajv)
+
+export function createValidator(schema: object) {
+  const validator = ajv.compile(schema);
+  return (model: object) => {
+    validator(model);
+    const valudationOutput = validator.errors?.length ? { details: validator.errors } : null;
+    return valudationOutput;
+  };
+}
+
+export const validateForm = (formData: any, schema: any) => {
   const validationErrors: any = {};
   const properties = schema.properties;
 
@@ -15,49 +33,106 @@ export const validate = (formData: any, schema: any) => {
   Object.keys(properties).forEach(key => {
     const value = formData[key];
     const prop = properties[key];
+    const fieldErrors = [];
+    let anyError = false;
+    // if (value) {
     const validationResult = validateField(key, value, formData, prop);
+    if (validationResult) {
+      anyError = true;
+      fieldErrors.push(...validationResult);
+    }
+    // }
 
     if (prop.required && !value) {
-      validationErrors[key] = 'This field is required.';
-    } else {
-      const requiredIfError = checkRequiredIf(prop, value);
-      if (requiredIfError) {
-        validationErrors[key] = requiredIfError;
-      }
+      anyError = true;
+      fieldErrors.push('This field is required.');
+    }
+
+    const requiredIfError = checkRequiredIf(prop, value);
+    if (requiredIfError) {
+      anyError = true;
+      fieldErrors.push(requiredIfError);
+    }
+
+    if (anyError) {
+      validationErrors[key] = fieldErrors;
     }
   });
 
   return validationErrors;
 };
 
-export const validateField = (keyPath, value, formData, schema) => {
+const pattern = /\.\d+$/;
+export const validateField = (keyPath, value, formData, schema, arrayIndex?) => {
+  if (!schema) return null;
+  if (pattern.test(keyPath) && typeof arrayIndex === 'number') {
+    keyPath = keyPath + '.items'
+  }
   const fieldSchema = getSchemaAtPath(schema, keyPath);
-
-  if (fieldSchema['x-matchField']) {
-    const matchFieldPath = fieldSchema['x-matchField'];
-    const matchFieldValue = getValueAtPath(formData, matchFieldPath);
-
-    if (value !== matchFieldValue) {
-      return `The ${fieldSchema.title} does not match the ${getSchemaAtPath(schema, matchFieldPath).title
-        }`;
+  if (!fieldSchema) return null;
+  const copySchema = structuredClone(fieldSchema);
+  Object.keys(copySchema).forEach(key => {
+    if (!['type', 'string', 'format', 'required'].includes(key)) {
+      delete copySchema[key];
     }
+  });
+
+  let validationErrors;
+  try {
+    const schemaValidator = createValidator(copySchema);
+    validationErrors = schemaValidator(value);
+  } catch (error) {
+    console.error({ error, value, validationErrors });
   }
 
+  if (validationErrors) {
+    const newErrors = [];
+    validationErrors.details.forEach(error => {
+      if (error.schemaPath === '#/required') {
+        newErrors.push(error?.message);
+      } else {
+        newErrors.push(error?.message);
+      }
+    });
+    return newErrors;
+  }
+  return undefined
+  // if (fieldSchema['x-matchField']) {
+  //   const matchFieldPath = fieldSchema['x-matchField'];
+  //   const matchFieldValue = getValueAtPath(formData, matchFieldPath);
+
+  //   if (value !== matchFieldValue) {
+  //     return `The ${fieldSchema.title} does not match the ${getSchemaAtPath(schema, matchFieldPath).title
+  //       }`;
+  //   }
+  // }
+
   // Additional validation rules can be added here
-  return null;
 };
 
+
 // Helper function to get the schema at the given keyPath
-export const getSchemaAtPath = (schema, keyPath) => {
-  const pathParts = keyPath.split('.');
-  let currentSchema = schema.properties;
+const getSchemaAtPath = (schema, path) => {
+  const pathParts = path.split('.');
+  let currentSchema = schema;
 
   for (const part of pathParts) {
-    currentSchema = currentSchema[part].properties || currentSchema[part];
+    if (isNaN(parseInt(part))) {  // If the part is not a number
+      if (currentSchema?.properties) {
+        currentSchema = currentSchema.properties[part];
+      } else if (currentSchema?.items) {
+        if (currentSchema.items.type === 'object') {
+          currentSchema = currentSchema.items.properties[part];
+        } else {
+          currentSchema = currentSchema.items;
+        }
+      }
+    }
   }
 
   return currentSchema;
 };
+
 
 // Helper function to get the value at the given keyPath in formData
 export const getValueAtPath = (formData, keyPath) => {
