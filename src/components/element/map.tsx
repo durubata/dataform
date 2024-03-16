@@ -21,7 +21,7 @@ export function MapInput(props) {
 
   return (
     <div style={{ height: '200px', width: '100%' }}>
-      <GoogleMapReact bootstrapURLKeys={{ key: 'AIzaSyB6XJn7nEXX7aaNwQX-q8UVmFbzI5Oq5Xg' }}
+      <GoogleMapReact bootstrapURLKeys={{ key: '' }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
